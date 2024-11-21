@@ -3,6 +3,8 @@ import App from '../App';
 import Home from '../pages/Home';
 import Search from '../pages/Search.js';
 import About from '../pages/About';
+import ProductPage from '../pages/ProductPage.js';
+import Contact from '../pages/Contact.js';
 
 const router = createBrowserRouter([
     {
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
             {
                 path: 'about',
                 element: <About />,
+            },
+            {
+                path: 'contact',
+                element: <Contact />,
+            },
+            {
+                path: 'products',
+                element: <ProductPage />,
             },
         ],
     },

@@ -77,13 +77,13 @@ const Banner = () => {
                     <p className='italic text-lg mb-4'>
                         {banners[currentImage].title}
                     </p>
-                    <h1 className='text-4xl font-bold mb-8'>
+                    <h1 className='text-5xl font-bold mb-8'>
                         {banners[currentImage].subtitle}
                     </h1>
-                    <p className='text-sm leading-relaxed mb-6'>
+                    <p className='text-base leading-relaxed mb-8'>
                         {banners[currentImage].description}
                     </p>
-                    <button className='bg-green-500 text-white text-sm px-4 py-2 rounded-lg hover:bg-green-600 transition-all w-48'>
+                    <button className='bg-primary text-white font-semibold text-sm px-4 py-3 rounded-lg hover:bg-[#669900] transition-all w-48'>
                         {banners[currentImage].buttonText}
                     </button>
                 </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
-import { BeakerIcon } from '@heroicons/react/24/solid';
+
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 
 const navigation = {
@@ -25,8 +25,8 @@ const navigation = {
 };
 const Header = () => {
     return (
-        <header className=' top-0 w-full h-16 bg-black z-40 text-white'>
-            <div className=' container mx-auto px-6 flex items-center h-full'>
+        <header className=' top-0 w-full h-20 bg-black z-40 text-white'>
+            <div className=' container mx-auto flex items-center h-full'>
                 <Link to={'/'}>
                     <img src={logo} alt='logo' width={120} />
                 </Link>
@@ -36,9 +36,9 @@ const Header = () => {
                             <NavLink
                                 to={nav.href}
                                 className={({ isActive }) =>
-                                    `hover:text-green-500 px-2 ${
+                                    `hover:text-primary px-2 ${
                                         isActive &&
-                                        ' text-green-500 font-semibold'
+                                        ' text-primary font-semibold'
                                     }`
                                 }
                             >
@@ -62,9 +62,13 @@ const Header = () => {
                     </form>
 
                     <div className='text-white text-sm'>
-                        <Link to={'/signin'} className='hover:text-green-500'>Đăng nhập</Link>{' '}
+                        <Link to={'/signin'} className='hover:text-primary'>
+                            Đăng nhập
+                        </Link>{' '}
                         <span className='mx-2 '>|</span>{' '}
-                        <Link to={'/signup'} className='hover:text-green-500'>Đăng ký</Link>
+                        <Link to={'/signup'} className='hover:text-primary'>
+                            Đăng ký
+                        </Link>
                     </div>
                 </div>
             </div>
