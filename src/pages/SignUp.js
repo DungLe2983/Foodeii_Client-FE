@@ -1,7 +1,8 @@
-export default function Contact() {
+import { LockClosedIcon } from '@heroicons/react/24/solid';
+
+export default function SignUp() {
     return (
         <div className='min-h-screen bg-gray-50 flex flex-col items-center'>
-            {/* Banner */}
             <div
                 className='w-full h-56 bg-cover bg-center relative flex justify-center items-center'
                 style={{
@@ -9,47 +10,43 @@ export default function Contact() {
                         "url('https://bizweb.dktcdn.net/100/522/252/themes/958280/assets/breadcrumb.jpg?1726650282479')",
                 }}
             >
-                {/* Lớp phủ làm tối ảnh */}
                 <div className='absolute inset-0 bg-black/50'></div>
 
-                {/* Nội dung tiêu đề */}
                 <div className='relative flex flex-col items-center'>
                     <h1 className='text-[#BFD730] text-4xl font-bold'>
-                        LIÊN HỆ VỚI CHÚNG TÔI
+                        ĐĂNG KÝ TÀI KHOẢN
                     </h1>
                     <p className='text-white font-semibold mt-4'>
-                        TRANG CHỦ / LIÊN HỆ
+                        TRANG CHỦ / ĐĂNG KÝ TÀI KHOẢN
                     </p>
                 </div>
             </div>
 
-            {/* Form liên hệ */}
-            <div className='w-full max-w-3xl mt-10 pt-10 pb-16 px-10 bg-[#fdfbf7] border rounded-lg shadow-md'>
-                <h2 className='text-center text-xl font-bold text-primary'>
-                    GỬI THÔNG TIN LIÊN HỆ
-                </h2>
-                <p className='text-center text-gray-600 mt-2'>
-                    Nếu bạn có bất kỳ câu hỏi nào, đừng ngần ngại gửi tin nhắn
-                    cho chúng tôi.
-                </p>
+            <div className='w-full max-w-xl mt-6 pt-10 pb-16 px-10 bg-[#fdfbf7] border rounded-lg '>
+                <div className='flex flex-col items-center'>
+                    <h2 className='text-center text-base font-semibold  '>
+                        ĐĂNG KÝ TÀI KHOẢN TẠI
+                    </h2>
+                    <span className=' text-xl font-bold text-primary'>
+                        FOODEII
+                    </span>
+                </div>
 
                 <form className='mt-6'>
-                    {/* Tên */}
-                    <div className='mt-4'>
+                    <div>
                         <label
-                            htmlFor='name'
+                            htmlFor='fullname'
                             className='block text-sm font-medium text-gray-700'
                         >
                             Họ và Tên
                         </label>
                         <input
                             type='text'
-                            id='name'
-                            placeholder='Nhập họ và tên của bạn'
+                            id='fullname'
+                            placeholder='Họ và Tên'
                             className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm'
                         />
                     </div>
-                    {/* Email */}
                     <div className='mt-4'>
                         <label
                             htmlFor='email'
@@ -60,46 +57,63 @@ export default function Contact() {
                         <input
                             type='email'
                             id='email'
-                            placeholder='Nhập email của bạn'
+                            placeholder='Email'
                             className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm'
                         />
                     </div>
-                    {/* Số điện thoại */}
                     <div className='mt-4'>
                         <label
-                            htmlFor='phone'
+                            htmlFor='password'
                             className='block text-sm font-medium text-gray-700'
                         >
-                            Số điện thoại
+                            Mật khẩu
                         </label>
                         <input
-                            type='tel'
-                            id='phone'
-                            placeholder='Nhập số điện thoại của bạn'
+                            type='password'
+                            id='password'
+                            placeholder='Mật khẩu'
                             className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm'
                         />
                     </div>
-                    {/* Nội dung */}
                     <div className='mt-4'>
                         <label
-                            htmlFor='message'
+                            htmlFor='confirm-password'
                             className='block text-sm font-medium text-gray-700'
                         >
-                            Nội dung
+                            Xác nhận mật khẩu
                         </label>
-                        <textarea
-                            id='message'
-                            placeholder='Nhập nội dung bạn muốn gửi'
-                            rows={4}
+                        <input
+                            type='password'
+                            id='confirm-password'
+                            placeholder='Xác nhận mật khẩu'
                             className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm'
-                        ></textarea>
+                        />
                     </div>
-                    {/* Gửi thông tin */}
+                    <div className='flex items-center mt-4'>
+                        <input
+                            id='terms'
+                            type='checkbox'
+                            className='h-4 w-4 text-primary border-gray-300 rounded'
+                        />
+                        <label
+                            htmlFor='terms'
+                            className='ml-2 text-sm text-gray-600'
+                        >
+                            Tôi đồng ý với{' '}
+                            <a
+                                href='/'
+                                className='text-primary hover:underline'
+                            >
+                                điều khoản dịch vụ
+                            </a>
+                        </label>
+                    </div>
                     <button
                         type='submit'
                         className='mt-6 w-full bg-primary text-white font-bold py-2 px-4 rounded-md flex items-center justify-center hover:bg-primary/90'
                     >
-                        GỬI THÔNG TIN
+                        ĐĂNG KÝ
+                        <LockClosedIcon className='h-5 w-5 text-white ml-2' />
                     </button>
                 </form>
             </div>

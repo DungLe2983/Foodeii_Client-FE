@@ -5,6 +5,8 @@ import Search from '../pages/Search.js';
 import About from '../pages/About';
 import ProductPage from '../pages/ProductPage.js';
 import Contact from '../pages/Contact.js';
+import SignIn from '../pages/SignIn.js';
+import SignUp from '../pages/SignUp.js';
 
 const router = createBrowserRouter([
     {
@@ -14,6 +16,14 @@ const router = createBrowserRouter([
             {
                 path: '',
                 element: <Home />,
+            },
+            {
+                path: '/signin',
+                element: <SignIn />,
+            },
+            {
+                path: '/signup',
+                element: <SignUp />,
             },
             {
                 path: 'search',
