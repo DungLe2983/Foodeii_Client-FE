@@ -1,9 +1,13 @@
 // components/ProductCard.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({ image, name, price }) => {
     return (
-        <div className='bg-[#f4f6e6] rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-all'>
+        <Link
+            to={':id'}
+            className='bg-[#f4f6e6] rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-all'
+        >
             <div className='p-6'>
                 <img
                     src={image}
@@ -19,7 +23,7 @@ const ProductCard = ({ image, name, price }) => {
                     Giá: <span className='font-semibold'>{price}</span>
                 </p>
             </div>
-        </div>
+        </Link>
     );
 };
 

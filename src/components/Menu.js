@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
-const MenuItem = ({ title, href, isActive, onClick }) => {
+const MenuItem = ({ title, href, isActive }) => {
     return (
         <Link
             to={href} // Điều hướng đến URL được chỉ định
             className={`block px-4 py-3 cursor-pointer hover:bg-lime-100 transition-colors ${
                 isActive ? 'text-primary font-bold' : 'text-gray-700'
             }`}
-            onClick={onClick}
         >
             {title}
         </Link>
@@ -16,7 +15,7 @@ const MenuItem = ({ title, href, isActive, onClick }) => {
 };
 
 const Menu = () => {
-    const [activeItem, setActiveItem] = useState('Thịt heo');
+    const location = useLocation(); // Lấy thông tin URL hiện tại
 
     const menuItems = [
         { id: 1, title: 'Thịt bò', href: '/products/thit-bo' },
@@ -32,7 +31,7 @@ const Menu = () => {
     ];
 
     return (
-        <div className='w-full max-w-xs bg-white rounded-lg shadow'>
+        <div className='w-full max-w-xs bg-gray-100 rounded-lg shadow sticky top-2'>
             {/* Header */}
             <div className='bg-primary px-4 py-3 rounded-t-lg'>
                 <h2 className='text-gray-800 font-bold text-lg'>DANH MỤC</h2>
@@ -45,8 +44,7 @@ const Menu = () => {
                         key={item.id}
                         title={item.title}
                         href={item.href}
-                        isActive={activeItem === item.title}
-                        onClick={() => setActiveItem(item.title)}
+                        isActive={location.pathname === item.href} // So sánh URL hiện tại
                     />
                 ))}
             </div>

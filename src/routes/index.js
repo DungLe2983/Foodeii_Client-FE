@@ -7,6 +7,10 @@ import ProductPage from '../pages/ProductPage.js';
 import Contact from '../pages/Contact.js';
 import SignIn from '../pages/SignIn.js';
 import SignUp from '../pages/SignUp.js';
+import DetailPage from '../pages/DetailPage.js';
+import Cart from '../pages/Cart.js';
+import Checkout from '../pages/Checkout.js';
+import Success from '../pages/Success.js';
 
 const router = createBrowserRouter([
     {
@@ -44,6 +48,22 @@ const router = createBrowserRouter([
             {
                 path: ':products/:category',
                 element: <ProductPage />,
+            },
+            {
+                path: ':products/:category/:id',
+                element: <DetailPage />,
+            },
+            {
+                path: 'cart',
+                element: <Cart />,
+            },
+            {
+                path: 'checkout',
+                element: <Checkout />,
+            },
+            {
+                path: 'success',
+                element: <Success />,
             },
         ],
     },

@@ -1,6 +1,7 @@
 import React from 'react';
 import Menu from '../components/Menu';
 import ProductCard from '../components/ProductCard';
+import SubBanner from '../components/SubBanner';
 
 const ProductPage = () => {
     const products = [
@@ -28,27 +29,17 @@ const ProductPage = () => {
             price: 'Liên hệ',
             image: 'https://bizweb.dktcdn.net/thumb/large/100/522/252/products/suon-canh-buom-png-jpg.png?v=1726298580437',
         },
+        {
+            id: 5,
+            name: 'Thịt đùi heo',
+            price: 'Liên hệ',
+            image: 'https://bizweb.dktcdn.net/thumb/large/100/522/252/products/suon-canh-buom-png-jpg.png?v=1726298580437',
+        },
     ];
     return (
-        <div className='min-h-screen bg-gray-50 flex flex-col items-center'>
-            <div
-                className='w-full h-80 bg-cover bg-center relative flex justify-center items-center'
-                style={{
-                    backgroundImage:
-                        "url('https://bizweb.dktcdn.net/100/522/252/themes/958280/assets/breadcrumb.jpg?1726650282479')",
-                }}
-            >
-                <div className='absolute inset-0 bg-black/50'></div>
+        <div className='min-h-screen bg-white flex flex-col items-center'>
+            <SubBanner title='SẢN PHẨM' subtitle='TRANG CHỦ / SẢN PHẨM' />
 
-                <div className='relative flex flex-col items-center'>
-                    <h1 className='text-[#BFD730] text-4xl font-bold'>
-                        SẢN PHẨM
-                    </h1>
-                    <p className='text-white font-semibold mt-4'>
-                        TRANG CHỦ / SẢN PHẨM
-                    </p>
-                </div>
-            </div>
             <div className='flex w-full container'>
                 {/* Sidebar */}
                 <aside className='w-80 py-4 pr-4'>
