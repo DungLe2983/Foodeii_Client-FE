@@ -1,5 +1,6 @@
 import { LockClosedIcon } from '@heroicons/react/24/solid';
 
+
 export default function SignIn() {
     return (
         <div className='min-h-screen bg-gray-50 flex flex-col items-center'>
@@ -26,7 +27,9 @@ export default function SignIn() {
 
             <div className='w-full max-w-xl mt-6 pt-10 pb-16 px-10 bg-[#fdfbf7] border rounded-lg '>
                 <div className='flex flex-col items-center'>
-                    <h2 className='text-center text-base font-semibold  '>ĐĂNG NHẬP VÀO</h2>
+                    <h2 className='text-center text-base font-semibold  '>
+                        ĐĂNG NHẬP VÀO
+                    </h2>
                     <span className=' text-xl font-bold text-primary'>
                         FOODEII
                     </span>
