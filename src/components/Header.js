@@ -5,6 +5,7 @@ import {
     MagnifyingGlassIcon,
     ChevronDownIcon,
     ChevronUpIcon,
+    ShoppingBagIcon,
 } from '@heroicons/react/24/solid';
 
 const productCategories = [
@@ -127,6 +128,9 @@ const Header = () => {
                             Đăng ký
                         </Link>
                     </div>
+                    <Link to={'/cart'}>
+                        <ShoppingBagIcon className='w-6 h-6 hover:text-primary' />
+                    </Link>
                 </div>
             </div>
         </header>

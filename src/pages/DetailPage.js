@@ -151,7 +151,7 @@ const DetailPage = () => {
 
                     <div>
                         <p className='mt-12 text-xl text-gray-800 font-semibold underline'>
-                            Description:
+                            Mô tả sản phẩm:
                         </p>
 
                         <p className='text-xs md:text-base text-gray-600 mt-5'>

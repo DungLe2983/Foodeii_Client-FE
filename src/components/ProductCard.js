@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 const ProductCard = ({ image, name, price }) => {
     return (
         <Link
-            to={':id'}
+            to={'/:products/:category/:id'}
             className='bg-[#f4f6e6] rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-all'
         >
-            <div className='p-6'>
+            <div className='p-6 items-center justify-center flex'>
                 <img
                     src={image}
                     alt={name}
