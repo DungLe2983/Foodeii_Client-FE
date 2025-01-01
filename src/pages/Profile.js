@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import SubBanner from "../components/SubBanner";
 import { getProfile, updateProfile } from "../service/profileService";
 import { useNavigate } from "react-router-dom";
+import Loader from "../components/Loader";
 
 const Profile = () => {
-  const [user, setUser] = useState(null); // Đặt là null ban đầu để xử lý khi chưa lấy được dữ liệu
+  const [user, setUser] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState(null); // Dữ liệu chỉnh sửa
-  const [error, setError] = useState(""); // Để hiển thị lỗi
+  const [formData, setFormData] = useState(null);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -54,10 +55,14 @@ const Profile = () => {
   };
 
   if (!user) {
-    return <div>Đang tải thông tin người dùng...</div>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
 
-  console.log("formData", formData);
+  // console.log("formData", formData);
   return (
     <div className='min-h-screen bg-white flex flex-col items-center'>
       <SubBanner title='NGƯỜI DÙNG' subtitle='Thông tin khách hàng' />

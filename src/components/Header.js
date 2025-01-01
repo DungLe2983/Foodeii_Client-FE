@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import {
   MagnifyingGlassIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
   ShoppingBagIcon,
 } from "@heroicons/react/24/solid";
 
@@ -21,15 +19,13 @@ const navigation = {
     href: "/about",
     label: "Về chúng tôi",
   },
-  //   contact: {
-  //     href: "/contact",
-  //     label: "Liên hệ",
-  //   },
 };
 
 const Header = () => {
   const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(""); // Tạo state cho từ khóa tìm kiếm
+  const inputRef = useRef(null); // Tham chiếu đến input tìm kiếm
   const navigate = useNavigate();
 
   const toggleDropdown = () => {
@@ -50,6 +46,17 @@ const Header = () => {
     localStorage.removeItem("Foodei_userId");
     setIsAuthenticated(false);
     navigate("/signin");
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim() !== "") {
+      navigate(`/search?keyword=${searchQuery}`);
+      setSearchQuery("");
+      if (inputRef.current) {
+        inputRef.current.value = "";
+      }
+    }
   };
 
   return (
@@ -89,15 +96,18 @@ const Header = () => {
         </nav>
 
         <div className='ml-auto flex items-center gap-8'>
-          <form className='flex items-center gap-1'>
+          <form onSubmit={handleSearch} className='flex items-center gap-1'>
             <input
+              ref={inputRef}
               type='text'
-              placeholder='Search...'
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)} // Cập nhật giá trị tìm kiếm
+              placeholder='Tìm kiếm...'
               className='bg-transparent px-4 py-1 outline-none border-none hidden lg:block'
             />
-            <Link to={"/search"}>
+            <button type='submit'>
               <MagnifyingGlassIcon className='w-5 h-5' />
-            </Link>
+            </button>
           </form>
 
           <div className='text-white text-sm'>

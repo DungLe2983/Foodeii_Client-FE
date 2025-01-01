@@ -1,55 +1,71 @@
 import SubBanner from "../components/SubBanner";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
 import {
   FunnelIcon,
   Squares2X2Icon,
   Bars4Icon,
   ChevronDownIcon,
 } from "@heroicons/react/24/outline";
-import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 import ProductCard from "../components/ProductCard";
+import Loader from "../components/Loader";
 
 const Search = () => {
-  const [viewMode, setViewMode] = useState("grid"); // 'grid' or 'list'
+  const [viewMode, setViewMode] = useState("grid");
   const [sortBy, setSortBy] = useState("relevant");
   const [showFilters, setShowFilters] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  // Mock data
-  const searchResults = [
-    {
-      id: 1,
-      name: "Thăn bò Wagyu A5",
-      price: 1250000,
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const keyword = searchParams.get("keyword");
 
-      image:
-        "https://bizweb.dktcdn.net/thumb/large/100/522/252/products/suon-canh-buom-png-jpg.png?v=1726298580437",
-    },
+  useEffect(() => {
+    const fetchSearchResults = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/FoodStore_war_exploded/api/search?keyword=${keyword}`
+        );
+        setSearchResults(response.data);
+      } catch (error) {
+        console.error("Error fetching search results:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    {
-      id: 2,
-      name: "Bẹ vai bò Wagyu đông lạnh  ",
-      price: 1250000,
+    if (keyword) {
+      fetchSearchResults();
+    }
+  }, [keyword]);
 
-      image:
-        "https://bizweb.dktcdn.net/thumb/large/100/522/252/products/be-vai-bo-uc-dl.png?v=1724469556427",
-    },
-  ];
+  const sortProducts = (products, sortBy) => {
+    if (sortBy === "price-asc") {
+      return [...products].sort((a, b) => a.price - b.price);
+    } else if (sortBy === "price-desc") {
+      return [...products].sort((a, b) => b.price - a.price);
+    }
+    return products;
+  };
+
+  const sortedProducts = sortProducts(searchResults, sortBy);
 
   return (
     <div className='min-h-screen bg-white'>
-      <SubBanner title='Tìm kiếm' subtitle='TRANG CHỦ / Tìm kiếm sản phẩm' />
+      <SubBanner title='Tìm kiếm' subtitle={`TRANG CHỦ / Tìm kiếm sản phẩm`} />
       <div className='max-w-7xl mx-auto px-4 py-8'>
-        {/* Search Header */}
         <div className='mb-6'>
           <h1 className='text-2xl font-semibold text-black'>
-            Kết quả tìm kiếm cho "wagyu"
+            Kết quả tìm kiếm cho "{keyword}"
           </h1>
           <p className='text-gray-600 mt-2'>
             Tìm thấy {searchResults.length} sản phẩm
           </p>
         </div>
 
-        {/* Filters & Sort Bar */}
         <div className='flex flex-wrap items-center justify-between gap-4 mb-6 bg-white p-4 rounded-lg shadow-sm'>
           <div className='flex items-center gap-4'>
             <button
@@ -59,8 +75,6 @@ const Search = () => {
               <FunnelIcon className='h-5 w-5' />
               <span>Bộ lọc</span>
             </button>
-
-            {/* View Mode Switcher */}
             <div className='hidden sm:flex items-center gap-2 border border-gray-300 rounded-lg'>
               <button
                 className={`p-2 rounded-l-lg ${
@@ -81,7 +95,6 @@ const Search = () => {
             </div>
           </div>
 
-          {/* Sort Dropdown */}
           <div className='relative'>
             <select
               value={sortBy}
@@ -89,40 +102,42 @@ const Search = () => {
               className='appearance-none bg-white border border-gray-300 rounded-lg py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
             >
               <option value='relevant'>Liên quan nhất</option>
-              <option value='newest'>Mới nhất</option>
               <option value='price-asc'>Giá thấp đến cao</option>
               <option value='price-desc'>Giá cao đến thấp</option>
-              <option value='popular'>Phổ biến nhất</option>
             </select>
             <ChevronDownIcon className='h-5 w-5 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none' />
           </div>
         </div>
 
-        {/* Product Grid */}
-        <div
-          className={`grid ${
-            viewMode === "grid"
-              ? "grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-              : "grid-cols-1"
-          } gap-6`}
-        >
-          {searchResults.map((product) => (
-            <ProductCard
-              key={product.id}
-              image={product.image}
-              name={product.name}
-              price={product.price}
-            />
-          ))}
-        </div>
-
-        {/* Empty State */}
-        {searchResults.length === 0 && (
+        {/* Kiểm tra trạng thái loading */}
+        {loading ? (
+          <div className='text-center py-12'>
+            <Loader />
+          </div>
+        ) : searchResults.length === 0 ? (
           <div className='text-center py-12'>
             <h3 className='text-lg font-medium text-gray-900 mb-2'>
               Không tìm thấy sản phẩm
             </h3>
             <p className='text-gray-600'>Vui lòng thử lại với từ khóa khác</p>
+          </div>
+        ) : (
+          <div
+            className={`grid ${
+              viewMode === "grid"
+                ? "grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+                : "grid-cols-1"
+            } gap-6`}
+          >
+            {sortedProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                id={product.id}
+                imageUrl={product.imageUrl}
+                name={product.name}
+                price={product.price}
+              />
+            ))}
           </div>
         )}
       </div>
