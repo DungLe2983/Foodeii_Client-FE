@@ -30,11 +30,11 @@ To install and run the project locally, follow these steps:
 
 ## User Interface
 
-![Home](./demo_ui/home.png)
-![Explore](./demo_ui/explore.png)
-![ProdutcDetail](./demo_ui/detail.png)
+![Home](./demo_ui/Home.png)
+![Explore](./demo_ui/Products.png)
+![ProdutcDetail](./demo_ui/Detail.png)
 ![Cart](./demo_ui/cart.png)
-![Checkout](./demo_ui/checkout.png)
+![Checkout](./demo_ui/about.png)
 ![Search](./demo_ui/search.png)
 
 
